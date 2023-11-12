@@ -1,0 +1,22 @@
+name: Continuous Integration
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  ci:
+    name: Continuous Integration
+    runs-on: [self-hosted, local]
+    container:
+      image: github-runner
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v2
+      - name: Build Docker
+        id: build_docker
+        run: |
+          ./build.sh 
+      
+  
